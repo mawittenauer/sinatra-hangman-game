@@ -4,4 +4,10 @@ h3#board {
 
 form.letter_button {
   float: left;
+  margin-right: 10px;
+}
+
+form.letter_button input[type="submit"] {
+  height: 50px;
+  width: 50px;
 }

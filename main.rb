@@ -21,7 +21,7 @@ get '/new_game' do
   session[:hint] = answer[0]
   session[:answer_array] = answer[1]
   session[:board_array] = answer[1].map { |space| space == " " ? " " : "_"}
-  session[:guesses_left] = 10
+  session[:guesses_left] = 8
   
   redirect '/game'
 end
