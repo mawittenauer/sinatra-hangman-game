@@ -39,19 +39,19 @@ end
 ('A'..'Z').each do |letter|
   post "/guess_#{letter}" do
     if session[:answer_array].include?(letter)
-      message = "That%20was%20a%20correct%20Guess!"
+      message = "success=That%20was%20a%20correct%20Guess!"
       session[:answer_array].each_with_index do |value, index|
         if value == letter
           session[:board_array][index] = letter
         end
       end
     else
-      message = "That%20was%20an%20incorrect%20Guess!"
+      message = "error=That%20was%20an%20incorrect%20Guess!"
       session[:guesses_left] -= 1
     end
     
     session[:guesses_board].delete(letter)
-    redirect "/game?message=#{message}"
+    redirect "/game?#{message}"
   end
 end
 

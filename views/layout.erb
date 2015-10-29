@@ -21,8 +21,11 @@
     <% if @error %>
       <div class="alert alert-error"><%= @error %></div>
     <% end %>
-    <% if params[:message] %>
-      <div class="alert alert-info"><%= params[:message] %></div>
+    <% if params[:error] %>
+      <div class="alert alert-error"><%= params[:error] %></div>
+    <% end %>
+    <% if params[:success] %>
+      <div class="alert alert-success"><%= params[:success] %></div>
     <% end %>
       <%= yield %>
   </div>
