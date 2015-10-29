@@ -11,15 +11,18 @@
       <div class="navbar-inner">
         <div class="container">
             <ul class="nav">
-              <li><a href="/">Nav Item</a></li>
+              <li><a href="/new_game">New Word</a></li>
             </ul>
         </div>
       </div>
     </div>
 
   <div class="container">
-    <%if @error %>
-      <div class="alert alert-error"><%=@error%></div>
+    <% if @error %>
+      <div class="alert alert-error"><%= @error %></div>
+    <% end %>
+    <% if params[:message] %>
+      <div class="alert alert-info"><%= params[:message] %></div>
     <% end %>
       <%= yield %>
   </div>

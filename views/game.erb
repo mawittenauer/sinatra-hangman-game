@@ -1,0 +1,24 @@
+<h2>Hangman!</h2>
+<div class="well">
+  <h4>Hint: <%= session[:hint] %></h4>
+  <h3 id="board">
+    <% session[:board_array].each do |space| %>
+      <% if space == " " %>
+        <span class="space"> - </span>
+      <% else %>
+        <%= space %>
+      <% end %>
+    <% end %>
+  </h3>
+</div>
+
+<h4>Guesses Made: <%= session[:guesses_made].join(', ') %></h4>
+<h4>You Have <%= session[:guesses_left] %> Guesses Left!</h4>
+
+<% if session[:guesses_left] > 0 %>
+  <form action="/player_guess" method="post">
+    <input type="text" name="guess">
+    <br>
+    <input type="submit" value="Guess Letter" class="btn btn-success">
+  </form>
+<% end %>
