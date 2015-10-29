@@ -1,3 +1,7 @@
 h3#board {
   letter-spacing: .5em;
 }
+
+form.letter_button {
+  float: left;
+}

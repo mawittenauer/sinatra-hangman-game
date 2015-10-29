@@ -12,13 +12,12 @@
   </h3>
 </div>
 
-<h4>Guesses Made: <%= session[:guesses_made].join(', ') %></h4>
 <h4>You Have <%= session[:guesses_left] %> Guesses Left!</h4>
 
 <% if session[:guesses_left] > 0 %>
-  <form action="/player_guess" method="post">
-    <input type="text" name="guess">
-    <br>
-    <input type="submit" value="Guess Letter" class="btn btn-success">
-  </form>
+  <% session[:guesses_board].each do |letter| %>
+    <form action="/guess_<%=letter%>" method="post" class="letter_button">
+      <input type="submit" value="<%=letter%>">
+    </form>
+  <% end %>
 <% end %>
