@@ -10,7 +10,7 @@ answers = [
   ['Famous Spy', ['J', 'A', 'M', 'E', 'S', ' ', 'B', 'O', 'N', 'D']],
   ['Disney Character', ['M', 'I', 'C', 'K', 'E', 'Y', ' ', 'M', 'O', 'U', 'S', 'E']],
   ['State Capitol', ['C', 'O', 'L', 'U', 'M', 'B', 'U', 'S']],
-  ['Apple', ['S', 'T', 'E', 'V', ' ', 'J', 'O', 'B', 'S']],
+  ['Apple', ['S', 'T', 'E', 'V', 'E', ' ', 'J', 'O', 'B', 'S']],
   ['Scarlet and Grey', ['O', 'H', 'I', 'O', ' ', 'S', 'T', 'A', 'T', 'E', ' ', 'B', 'U', 'C', 'K', 'E', 'Y', 'E', 'S']]
 ]
 
