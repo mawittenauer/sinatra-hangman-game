@@ -31,6 +31,8 @@ get '/new_game' do
 end
 
 get '/game' do
+  redirect '/new_game' if !session[:answer_array]
+  
   if session[:answer_array] == session[:board_array]
     redirect '/game_over'
   elsif session[:guesses_left] < 1
@@ -60,5 +62,6 @@ end
 end
 
 get '/game_over' do
+  redirect '/new_game' if !session[:answer_array]
   erb :game_over
 end
