@@ -16,7 +16,7 @@
 <br>
 <h4>Pick From The Letters Below:</h4>
 <% if session[:guesses_left] > 0 %>
-    <form action="/guess" method="post" class="letter_button">
+    <form action="/guess" method="post" id="guess_board">
       <% session[:guesses_board].each do |letter| %>
         <button name="guess" value="<%=letter%>" class="btn btn-success"><%=letter%></button>
       <% end %>
