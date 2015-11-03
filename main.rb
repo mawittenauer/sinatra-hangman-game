@@ -42,23 +42,21 @@ get '/game' do
   erb :game
 end
 
-('A'..'Z').each do |letter|
-  post "/guess_#{letter}" do
-    if session[:answer_array].include?(letter)
-      message = "success=That%20was%20a%20correct%20Guess!"
-      session[:answer_array].each_with_index do |value, index|
-        if value == letter
-          session[:board_array][index] = letter
-        end
+post "/guess" do
+  if session[:answer_array].include?(params[:guess])
+    message = "success=That%20was%20a%20correct%20Guess!"
+    session[:answer_array].each_with_index do |value, index|
+      if value == params[:guess]
+        session[:board_array][index] = params[:guess]
       end
-    else
-      message = "error=That%20was%20an%20incorrect%20Guess!"
-      session[:guesses_left] -= 1
     end
-    
-    session[:guesses_board].delete(letter)
-    redirect "/game?#{message}"
+  else
+    message = "error=That%20was%20an%20incorrect%20Guess!"
+    session[:guesses_left] -= 1
   end
+
+  session[:guesses_board].delete(params[:guess])
+  redirect "/game?#{message}"
 end
 
 get '/game_over' do
