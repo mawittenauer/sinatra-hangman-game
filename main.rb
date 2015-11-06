@@ -26,6 +26,7 @@ get '/new_game' do
   session[:answer_array] = answer[1]
   session[:board_array] = answer[1].map { |space| space == " " ? " " : "_"}
   session[:guesses_left] = 8
+  session[:guess] = nil
   
   redirect '/game'
 end
@@ -39,24 +40,26 @@ get '/game' do
     redirect '/game_over'
   end
   
+  if session[:guess]
+    if session[:answer_array].include?(session[:guess])
+      @success = "That Was A Correct Guess!"
+      session[:answer_array].each_with_index do |value, index|
+        if value == session[:guess]
+          session[:board_array][index] = session[:guess]
+        end
+      end
+    else
+      @error = "That Was An Incorrect Guess!"
+      session[:guesses_left] -= 1
+    end
+  end
+  
   erb :game
 end
 
 post "/guess" do
-  if session[:answer_array].include?(params[:guess])
-    message = "success=That%20was%20a%20correct%20Guess!"
-    session[:answer_array].each_with_index do |value, index|
-      if value == params[:guess]
-        session[:board_array][index] = params[:guess]
-      end
-    end
-  else
-    message = "error=That%20was%20an%20incorrect%20Guess!"
-    session[:guesses_left] -= 1
-  end
-
-  session[:guesses_board].delete(params[:guess])
-  redirect "/game?#{message}"
+  session[:guess] = params[:guess]
+  redirect "/game"
 end
 
 get '/game_over' do
