@@ -34,12 +34,6 @@ end
 get '/game' do
   redirect '/new_game' if !session[:answer_array]
   
-  if session[:answer_array] == session[:board_array]
-    redirect '/game_over'
-  elsif session[:guesses_left] < 1
-    redirect '/game_over'
-  end
-  
   if session[:guess]
     if session[:answer_array].include?(session[:guess])
       @success = "That Was A Correct Guess!"
@@ -52,6 +46,14 @@ get '/game' do
       @error = "That Was An Incorrect Guess!"
       session[:guesses_left] -= 1
     end
+    
+    session[:guesses_board].delete(session[:guess])
+  end
+  
+  if session[:answer_array] == session[:board_array]
+    redirect '/game_over'
+  elsif session[:guesses_left] < 1
+    redirect '/game_over'
   end
   
   erb :game
